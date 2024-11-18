@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme Complet Master RPMN</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        .module-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .progress-bar {
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #1e3a8a, #3b82f6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, 0); }
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="progress-bar"></div>
+
+    <!-- Header avec Animation -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="text-4xl font-bold mb-4 text-center animate__animated animate__fadeInDown">
+                Master RPMN
+            </h1>
+            <h2 class="text-2xl text-center animate__animated animate__fadeInUp animate__delay-1s">
+                Relations Publiques et Médias Numériques
+            </h2>
+            <p class="text-xl text-center mt-4 animate__animated animate__fadeInUp animate__delay-2s">
+                Innovation Pédagogique en Journalisme Numérique
+            </p>
+        </div>
+        <div class="floating absolute right-10 bottom-10 text-6xl opacity-20">
+            <i class="fas fa-robot"></i>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-4 py-4">
+                <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="prelim">Module Préliminaire</button>
+                <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="cours1">Cours 1</button>
+                <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="cours2">Cours 2</button>
+                <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="projects">Projets</button>
+                <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="special">Session Spéciale</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Module Préliminaire -->
+        <section id="prelim" class="tab-content active mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">
+                Module Préliminaire : Fondamentaux de l'IA
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Séance 1 -->
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-brain text-blue-600 mr-2"></i>
+                        Séance 1 : Introduction à l'IA
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold mb-2">Partie 1 : Concepts de Base (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Définition de l'IA</li>
+                                <li>Histoire et évolution</li>
+                                <li>Types d'IA</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Partie 2 : IA Générative (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Principes fondamentaux</li>
+                                <li>Applications dans les médias</li>
+                                <li>Exemples concrets (ChatGPT, CLaude, Gemini, DALL-E, Midjourney)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Partie 3 : Discussion et Q&A (30min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Cas d'usage dans le journalisme</li>
+                                <li>Implications éthiques</li>
+                                <li>Perspectives d'avenir</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séance 2 -->
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-keyboard text-blue-600 mr-2"></i>
+                        Séance 2 : L'Art du Prompt Engineering
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold mb-2">Fondamentaux (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Qu'est-ce que le prompt engineering?</li>
+                                <li>Principes de base</li>
+                                <li>Adapter le ton et le style du prompt selon le contexte</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Types de Prompts (1h15min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Prompts Directifs : <small> l’IA vers une réponse spécifique</small></li>
+                                <li>Prompts Ouverts : <small> Favoriser la créativité et l’exploration</small></li>
+                                <li>Prompts Contextuels : <small> Incorporer des données ou des exemples </small></li>
+                                <li>Prompts Séquentiels : <small> Construire des échanges progressifs</small></li>
+                                <li>Prompts Comparatifs : <small> Obtenir plusieurs options ou perspectives</small></li>
+                                <li>Prompts Créatifs : <small> Stimuler l’innovation</small></li>
+                                <li>Prompts Analytico-Décisionnels : <small> Aider à la résolution de problèmes</small></li>
+                                <li>Prompts Multi-domaines : <small> Exploiter les compétences générales de l’IA</small></li>
+                                <li>Prompts Spécifiques à une tâche : <small> Maximiser l’efficacité</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séance 3 -->
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-code text-blue-600 mr-2"></i>
+                        Séance 3 : Techniques Avancées et Pratiques du Prompt Engineering
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold mb-2">Examples pratiques liée au contexte marocain (2H)</h4>
+                            <small>la question du Sahara, l'immigration clandestine, l'émigration des cerveaux, la Coupe du Monde 2030 et la culture marocaine à l'ère digitale.</small>
+                            
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Prompts Directifs</li>
+                                <li>Prompts Ouverts</li>
+                                <li>Prompts Contextuels</li>
+                                <li>Prompts Séquentiels</li>
+                                <li>Prompts Comparatifs</li>
+                                <li>Prompts Créatifs</li>
+                                <li>Prompts Analytico-Décisionnels</li>
+                                <li>Prompts Multi-domaines</li>
+                                <li>Prompts Spécifiques à une tâche</li>
+                            </ul>
+                        </div>
+                        <!-- <div>
+                            <h4 class="font-bold mb-2">Applications Pratiques (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Rédaction d'articles</li>
+                                <li>Analyse de données</li>
+                                <li>Fact-checking</li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Séance 4 -->
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                        <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
+                        Séance 4 : Éthique et Bonnes Pratiques
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold mb-2">Best Practices (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Clarté et précision</li>
+                                <li>Contextualisation</li>
+                                <li>Vérification des résultats</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2">Éthique et Responsabilité (45min)</h4>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Vérification des sources</li>
+                                <li>Attribution appropriée</li>
+                                <li>Protection des données</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cours1" class="tab-content mb-16">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">Cours 1 : Analyse de Données et Médias Sociaux (7 séances)</h2>
+        
+            <div class="grid md:grid-cols-2 gap-8">
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"> <i class="fas fa-chart-bar mr-2 text-blue-600"></i> Séance 1 : Analyse des Médias Sociaux</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Introduction à l'analyse</li><li>Types de données</li><li>Éthique et confidentialité</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Configuration environnement</li><li>Python pour analyse</li><li>Premier script</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-smile mr-2 text-blue-600"></i> Séance 2 : Analyse de Sentiment</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Principes d'analyse</li><li>Modèles disponibles</li><li>Interprétation</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Utilisation APIs</li><li>Analyse commentaires</li><li>Visualisation</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-poll mr-2 text-blue-600"></i> Séance 3 : Études et Google Forms</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Méthodologie d'enquête</li><li>Conception formulaires</li><li>Biais et représentativité</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Création formulaires</li><li>Analyse automatisée</li><li>Visualisation données</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-newspaper mr-2 text-blue-600"></i> Séance 4 : Détection Fake News</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Caractéristiques fake news</li><li>Outils vérification</li><li>Méthodologie</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Utilisation APIs</li><li>Création détecteur</li><li>Analyses réelles</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-language mr-2 text-blue-600"></i>  Séance 5 : Traduction et Résumé</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Principes NLP</li><li>Outils traduction</li><li>Techniques résumé</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>APIs traduction</li><li>Résumé automatique</li><li>Exercices multilingues</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-microphone mr-2 text-blue-600"></i> Séance 6 : Transcription Audio</h3>
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Technologies reconnaissance</li><li>Analyse contenu</li><li>Outils disponibles</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Utilisation Whisper</li><li>Analyse transcriptions</li><li>Extraction insights</li></ul></div>
+                </div>
+        
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-balance-scale mr-2 text-blue-600"></i> Séance 7 : Contenu Non-Biaisé</h3>          
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Identification biais</li><li>Neutralité journalistique</li><li>Vérification</li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Détection biais</li><li>Réécriture assistée</li><li>Exercices pratiques</li></ul></div>
+                </div>
+        
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Animation au défilement
+        function checkFade() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight * 0.9) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / windowHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+        }
+
+        // Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.tab;
+                
+                tabBtns.forEach(b => b.classList.remove('bg-blue-100'));
+                btn.classList.add('bg-blue-100');
+                
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            checkFade();
+            updateProgressBar();
+        });
+
+        // Initial check
+        checkFade();
+    </script>
+</body>
+</html>
