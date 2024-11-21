@@ -7,7 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <style>
+    <!-- <style>
         .module-card {
             transition: transform 0.3s ease-in-out;
         }
@@ -51,7 +51,461 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        .module-content {
+        display: none;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+        .module-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .part-content {
+            display: none;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            padding-left: 20px;
+        }
+
+        .part-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .module-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .module-header::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+            font-size: 0.8em;
+        }
+
+        .module-header.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .part-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .part-header::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            font-size: 0.8em;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .part-header.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .hover-effect:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Animation pour l'ouverture/fermeture */
+        .module-content, .part-content {
+            max-height: 0;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        .module-content.active, .part-content.active {
+            max-height: 2000px; /* Ajustez selon vos besoins */
+            transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+        }
+
+
+        .tab-btn {
+        position: relative;
+    }
+
+    .tab-btn::before {
+        content: attr(aria-label);
+        position: absolute;
+        bottom: -2.5rem;
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        padding: 0.5rem;
+        background-color: #1e40af;
+        color: white;
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .tab-btn:hover::before {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+
+    /* Active state */
+    .tab-btn.active {
+        background-color: #dbeafe;
+        border-bottom: 2px solid #1e40af;
+    }
+
+    /* Animation for icon */
+    .tab-btn:active .fas {
+        transform: scale(0.95);
+    }
+        /* .module-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .module-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .part-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .part-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .module-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .module-header::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .module-header.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .part-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .part-header::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            font-size: 0.8em;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .part-header.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .hover-effect:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        } */
+    </style> -->
+    <style>
+
+        
+
+
+
+
+        /* Styles de Base */
+        .module-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+    
+        /* Animation d'apparition */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+    
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        /* Barre de progression */
+        .progress-bar {
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #1e3a8a, #3b82f6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+    
+        /* Animation flottante */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+    
+        @keyframes floating {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, 0); }
+        }
+    
+        /* Nouveaux styles pour l'accordéon ouvert par défaut */
+        .module-content {
+            display: block;
+            opacity: 1;
+            max-height: 2000px;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+        }
+    
+        .module-content.closed {
+            display: none;
+            opacity: 0;
+            max-height: 0;
+        }
+    
+        .part-content {
+            display: block;
+            opacity: 1;
+            max-height: 2000px;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            padding-left: 20px;
+        }
+    
+        .part-content.closed {
+            display: none;
+            opacity: 0;
+            max-height: 0;
+        }
+    
+        /* Styles des en-têtes et indicateurs */
+        .module-header, .part-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 30px;
+            transition: background-color 0.3s ease;
+        }
+    
+        .module-header::after, .part-header::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            transition: transform 0.3s ease;
+            font-size: 0.8em;
+        }
+    
+        .module-header.closed::after, .part-header.closed::after {
+            transform: translateY(-50%) rotate(0deg);
+        }
+    
+        /* Hover effects */
+        .hover-effect:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+    
+        /* Tooltip sur hover */
+        .module-header::before, .part-header::before {
+            content: 'Cliquer pour fermer';
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7em;
+            color: #6b7280;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    
+        .module-header.closed::before, .part-header.closed::before {
+            content: 'Cliquer pour ouvrir';
+        }
+    
+        .module-header:hover::before, .part-header:hover::before {
+            opacity: 1;
+        }
     </style>
+    
+    <script>
+
+        // Ajouter ceci au script existant
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestion des onglets de navigation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('[id^="tab-"]'); // Assurez-vous que vos sections ont des IDs comme "tab-prelim", "tab-cours1", etc.
+
+    function showTab(tabId) {
+        // Cacher tous les contenus
+        tabContents.forEach(content => {
+            content.classList.add('hidden');
+        });
+
+        // Afficher le contenu sélectionné
+        const selectedContent = document.getElementById(`tab-${tabId}`);
+        if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+        }
+
+        // Mise à jour des boutons
+        tabBtns.forEach(btn => {
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('bg-blue-100', 'text-blue-800');
+                btn.classList.remove('text-gray-600');
+            } else {
+                btn.classList.remove('bg-blue-100', 'text-blue-800');
+                btn.classList.add('text-gray-600');
+            }
+        });
+    }
+
+    // Ajouter les écouteurs d'événements aux boutons
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            showTab(tabId);
+        });
+    });
+
+    // Afficher le premier onglet par défaut
+    const defaultTab = tabBtns[0].getAttribute('data-tab');
+    showTab(defaultTab);
+});
+
+
+        // Fonction pour gérer le défilement et les animations
+        function checkFade() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight * 0.9) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+    
+        // Barre de progression
+        function updateProgressBar() {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / windowHeight) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+        }
+    
+        // Gestion de l'accordéon
+        document.addEventListener('DOMContentLoaded', () => {
+            function handleClick(header) {
+                const content = header.nextElementSibling;
+                header.classList.toggle('closed');
+                content.classList.toggle('closed');
+                const isExpanded = !header.classList.contains('closed');
+                header.setAttribute('aria-expanded', isExpanded);
+            }
+    
+            // Initialiser les en-têtes
+            document.querySelectorAll('.module-header, .part-header').forEach(header => {
+                header.setAttribute('role', 'button');
+                header.setAttribute('aria-expanded', 'true');
+                header.setAttribute('tabindex', '0');
+    
+                header.addEventListener('click', () => handleClick(header));
+                
+                header.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleClick(header);
+                    }
+                });
+            });
+    
+            // Animation smooth
+            document.querySelectorAll('.module-content, .part-content').forEach(content => {
+                content.addEventListener('transitionend', function() {
+                    if (this.classList.contains('closed')) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+        });
+    
+        // Fonction pour tout ouvrir/fermer
+        function toggleAll(action) {
+            const headers = document.querySelectorAll('.module-header, .part-header');
+            headers.forEach(header => {
+                const content = header.nextElementSibling;
+                if (action === 'open') {
+                    header.classList.remove('closed');
+                    content.classList.remove('closed');
+                    header.setAttribute('aria-expanded', 'true');
+                } else {
+                    header.classList.add('closed');
+                    content.classList.add('closed');
+                    header.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    
+        // Écouteurs d'événements globaux
+        window.addEventListener('scroll', () => {
+            checkFade();
+            updateProgressBar();
+        });
+    
+        // Vérification initiale
+        checkFade();
+    
+        // Optionnel : Boutons pour tout ouvrir/fermer
+        document.querySelector('body').insertAdjacentHTML('beforeend', `
+            <div class="fixed bottom-4 right-4 space-x-2 z-50">
+                <button onclick="toggleAll('open')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                    <i class="fas fa-expand-alt mr-2"></i>Tout ouvrir
+                </button>
+                <button onclick="toggleAll('close')" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-compress-alt mr-2"></i>Tout fermer
+                </button>
+            </div>
+        `);
+    </script>
 </head>
 <body class="bg-gray-50">
     <div class="progress-bar"></div>
@@ -76,7 +530,7 @@
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <!-- <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-center space-x-4 py-4">
                 <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="prelim">Module Préliminaire</button>
@@ -86,146 +540,412 @@
                 <button class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-100 transition" data-tab="special">Session Spéciale</button>
             </div>
         </div>
+    </nav> -->
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-4 py-4">
+                <!-- Module Préliminaire -->
+                <button class="tab-btn group flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400" data-tab="prelim" aria-label="Fondamentaux de l'IA et Geneative AI">
+                    <i class="fas fa-graduation-cap text-blue-600 mr-2 group-hover:transform group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Module Préliminaire</span>
+                    <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">5 séances</span>
+                </button>
+    
+                <!-- Cours 1 -->
+                <button class="tab-btn group flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400" data-tab="cours1" aria-label="Analyse de Données">
+                    <i class="fas fa-chart-bar text-blue-600 mr-2 group-hover:transform group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Cours 1</span>
+                    <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">8 séances</span>
+                </button>
+    
+                <!-- Cours 2 -->
+                <button class="tab-btn group flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400" data-tab="cours2" aria-label="Production IA">
+                    <i class="fas fa-robot text-blue-600 mr-2 group-hover:transform group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Cours 2</span>
+                    <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">8 séances</span>
+                </button>
+    
+                <!-- Projets -->
+                <button class="tab-btn group flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400" data-tab="projects" aria-label="Projets">
+                    <i class="fas fa-project-diagram text-blue-600 mr-2 group-hover:transform group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Projets</span>
+                    <span class="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">7 projets</span>
+                </button>
+    
+                <!-- Session Spéciale -->
+                <button class="tab-btn group flex items-center px-4 py-2 rounded-lg hover:bg-blue-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400" data-tab="special" aria-label="Session Spéciale">
+                    <i class="fas fa-star text-blue-600 mr-2 group-hover:transform group-hover:scale-110 transition-transform"></i>
+                    <span class="font-medium">Masterclass</span>
+                    <span class="ml-2 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Special</span>
+                </button>
+            </div>
+        </div>
+    
+        <!-- Indicateur de progression (optionnel) -->
+        <!-- <div class="h-1 bg-gradient-to-r from-blue-500 to-blue-700" style="width: 20%"></div> -->
     </nav>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <!-- Module Préliminaire -->
         <section id="prelim" class="tab-content active mb-16">
+            <div id="tab-prelim" class="tab-content">
             <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">
                 Module Préliminaire : Fondamentaux de l'IA
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Séance 1 -->
                 <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">
+                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4 p-4 hover-effect rounded">
                         <i class="fas fa-brain text-blue-600 mr-2"></i>
-                        Séance 1 : Introduction à l'IA
+                        Séance 1 : <br>
+                        Introduction à l'IA
                     </h3>
-                    <div class="space-y-4">
+                    <div class="module-content space-y-4">
                         <div>
-                            <h4 class="font-bold mb-2">Partie 1 : Concepts de Base (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Définition de l'IA</li>
-                                <li>Histoire et évolution</li>
-                                <li>Types d'IA</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 1 : Concepts de Base (45min)
+                            </h4>
+                            <div class="part-content">
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Définition de l'IA</li>
+                                    <li>Histoire et évolution</li>
+                                    <li>Types d'IA</li>
+                                </ul>
+                            </div>
                         </div>
                         <div>
-                            <h4 class="font-bold mb-2">Partie 2 : IA Générative (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Principes fondamentaux</li>
-                                <li>Applications dans les médias</li>
-                                <li>Exemples concrets (ChatGPT, CLaude, Gemini, DALL-E, Midjourney)</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 2 : IA Générative (45min)
+                            </h4>
+                            <div class="part-content">
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Principes fondamentaux</li>
+                                    <li>Applications dans les médias</li>
+                                    <li>Exemples concrets (ChatGPT, CLaude, Gemini, DALL-E, Midjourney)</li>
+                                </ul>
+                            </div>
                         </div>
                         <div>
-                            <h4 class="font-bold mb-2">Partie 3 : Discussion et Q&A (30min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Cas d'usage dans le journalisme</li>
-                                <li>Implications éthiques</li>
-                                <li>Perspectives d'avenir</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 3 : Discussion et Q&A (30min)
+                            </h4>
+                            <div class="part-content">
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Cas d'usage dans le journalisme</li>
+                                    <li>Implications éthiques</li>
+                                    <li>Perspectives d'avenir</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Séance 2 -->
+                <!-- Séance 2 : Fondamentaux -->
                 <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">
-                        <i class="fas fa-keyboard text-blue-600 mr-2"></i>
-                        Séance 2 : L'Art du Prompt Engineering
+                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4 p-4 hover-effect rounded">
+                        <i class="fas fa-layer-group text-blue-600 mr-2"></i>
+                        Séance 2 : <br>
+                        Fondamentaux du Prompt Engineering
                     </h3>
-                    <div class="space-y-4">
+                    <div class="module-content space-y-4">
                         <div>
-                            <h4 class="font-bold mb-2">Fondamentaux (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Qu'est-ce que le prompt engineering?</li>
-                                <li>Principes de base</li>
-                                <li>Adapter le ton et le style du prompt selon le contexte</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 1 : Introduction (30min)
+                            </h4>
+                            <div class="part-content">
+                                <ul class="list-disc pl-6 space-y-2">
+                                    <li>Définition et importance</li>
+                                    <li>Principes de base</li>
+                                    <li>Bonnes pratiques</li>
+                                    <li>Erreurs courantes</li>
+                                </ul>
+                            </div>
                         </div>
                         <div>
-                            <h4 class="font-bold mb-2">Types de Prompts (1h15min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Prompts Directifs : <small> l’IA vers une réponse spécifique</small></li>
-                                <li>Prompts Ouverts : <small> Favoriser la créativité et l’exploration</small></li>
-                                <li>Prompts Contextuels : <small> Incorporer des données ou des exemples </small></li>
-                                <li>Prompts Séquentiels : <small> Construire des échanges progressifs</small></li>
-                                <li>Prompts Comparatifs : <small> Obtenir plusieurs options ou perspectives</small></li>
-                                <li>Prompts Créatifs : <small> Stimuler l’innovation</small></li>
-                                <li>Prompts Analytico-Décisionnels : <small> Aider à la résolution de problèmes</small></li>
-                                <li>Prompts Multi-domaines : <small> Exploiter les compétences générales de l’IA</small></li>
-                                <li>Prompts Spécifiques à une tâche : <small> Maximiser l’efficacité</small></li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 2 :  Prompts Essentiels (45min)
+                            </h4>
+                            <div class="part-content">
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Zero-shot Prompting</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Obtenir des résultats sans exemples</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Tâche : [Instruction]<br>
+                                            Contexte : [Situation]<br>
+                                            Requis : [Résultat]
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- Few-shot Prompting -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Few-shot Prompting</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Utilisation d'exemples guides</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Exemple 1 : [E→S]<br>
+                                            Exemple 2 : [E→S]<br>
+                                            Maintenant : [Demande]
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- Task-oriented Prompting -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Task-oriented Prompting</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Instructions spécifiques</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Objectif : [But]<br>
+                                            Format : [Format]<br>
+                                            Contraintes : [Limites]
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+                                <br/>
+                                <div>
+                                    <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                        Partie 3 : Exercices Pratiques (30min)
+                                    </h4>
+                                    <div class="part-content">
+                                        <ul class="list-disc pl-6 space-y-2">
+                                            <li>Scénarios réels</li>
+                                            <li>Travaux en groupe</li>
+                                            <li>Retours et optimisation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Séance 3 -->
+                <!-- Séance 3 : Prompt Engineering Avancées -->
                 <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">
-                        <i class="fas fa-code text-blue-600 mr-2"></i>
-                        Séance 3 : Techniques Avancées et Pratiques du Prompt Engineering
+                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4 p-4 hover-effect rounded">
+                        <i class="fas fa-puzzle-piece text-blue-600 mr-2"></i>
+                        Séance 3 :  <br>
+                        Prompt Engineering Avancées
                     </h3>
-                    <div class="space-y-4">
+                    <div class="module-content space-y-4">
                         <div>
-                            <h4 class="font-bold mb-2">Examples pratiques liée au contexte marocain (2H)</h4>
-                            <small>la question du Sahara, l'immigration clandestine, l'émigration des cerveaux, la Coupe du Monde 2030 et la culture marocaine à l'ère digitale.</small>
-                            
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Prompts Directifs</li>
-                                <li>Prompts Ouverts</li>
-                                <li>Prompts Contextuels</li>
-                                <li>Prompts Séquentiels</li>
-                                <li>Prompts Comparatifs</li>
-                                <li>Prompts Créatifs</li>
-                                <li>Prompts Analytico-Décisionnels</li>
-                                <li>Prompts Multi-domaines</li>
-                                <li>Prompts Spécifiques à une tâche</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 1 :  Prompts Complexes (1h15min)
+                            </h4>
+                            <div class="part-content">
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">
+                                        CRISPE Format
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-2">Approche structurée complète</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Contexte : [Arrière-plan]<br>
+                                            Rôle : [Perspective]<br>
+                                            Instruction : [Tâche]<br>
+                                            Spécification : [Détails]<br>
+                                            But : [Objectif]<br>
+                                            Exemple : [Illustration]
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- Persona-based Prompting -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Persona-based Prompting</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Interactions basées sur des rôles</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            En tant que : [Rôle]<br>
+                                            But : [Objectif]<br>
+                                            Approche : [Méthode]<br>
+                                            Livrable : [Résultat]
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- Chain-of-thought Prompting -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Chain-of-thought Prompting</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Approche par raisonnement étape par étape</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Problème : [Question]<br>
+                                            1. [Réflexion]<br>
+                                            2. [Analyse]<br>
+                                            3. [Conclusion]
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+                                <br/>
+                                <div>
+                                    <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                        Partie 2 : Exercices Pratiques (45min)
+                                    </h4>
+                                    <div class="part-content">
+                                        <ul class="list-disc pl-6 space-y-2">
+                                            <li>Scénarios réels</li>
+                                            <li>Travaux en groupe</li>
+                                            <li>Retours et optimisation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
                         </div>
-                        <!-- <div>
-                            <h4 class="font-bold mb-2">Applications Pratiques (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Rédaction d'articles</li>
-                                <li>Analyse de données</li>
-                                <li>Fact-checking</li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
 
-                <!-- Séance 4 -->
+
+                <!-- Séance 4 : Approches Méthodologiques -->
                 <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">
-                        <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
-                        Séance 4 : Éthique et Bonnes Pratiques
+                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4 p-4 hover-effect rounded">
+                        <i class="fas fa-book text-blue-600 mr-2"></i>
+                        Séance 4 :  <br>
+                        Approches Avancées
                     </h3>
-                    <div class="space-y-4">
+                    <div class="module-content space-y-4">
                         <div>
-                            <h4 class="font-bold mb-2">Best Practices (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Clarté et précision</li>
-                                <li>Contextualisation</li>
-                                <li>Vérification des résultats</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-bold mb-2">Éthique et Responsabilité (45min)</h4>
-                            <ul class="list-disc pl-6 space-y-2">
-                                <li>Vérification des sources</li>
-                                <li>Attribution appropriée</li>
-                                <li>Protection des données</li>
-                            </ul>
+                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                Partie 1 :  Approches Méthodologiques (1h15min)
+                            </h4>
+                            <div class="part-content">
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">
+                                        Open Prompts
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-2">Questionnement exploratoire</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Je voudrais explorer [sujet] <br>
+                                            Pouvez-vous :<br>
+                                            1. Présenter différentes perspectives<br>
+                                            2. Suggérer des pistes de réflexion<br>
+                                            3. Identifier des opportunités<br>
+                                            
+                                            Contexte supplémentaire : [contexte si nécessaire]<br>
+                                            Format souhaité : Réflexion ouverte<br>
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- CCreative Prompts -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">
+                                        Creative Prompts
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-2">Approches créatives</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Contexte créatif : [description du contexte] <br>
+                                            Style recherché : [style spécifique] <br>
+                                            Contraintes créatives : <br>
+                                            - [contrainte 1] <br>
+                                            - [contrainte 2] <br>
+                                            Éléments à incorporer : [éléments clés] <br>
+                                            Ton désiré : [description du ton] <br>
+                                        </code>
+                                    </div>
+                                </div>
+                                <br/>
+                                <!-- Comparative Prompts -->
+                                <div class="border p-4 rounded-lg hover:shadow-md transition-all">
+                                    <h4 class="font-bold mb-2">Comparative Prompts</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Analyse comparative</p>
+                                    <div class="bg-gray-50 p-2 rounded text-sm">
+                                        <code>
+                                            Éléments à comparer : <br>
+                                            1. [élément 1] <br>
+                                            2. [élément 2] <br>
+
+                                            Critères d'analyse : <br>
+                                            - [critère 1] <br>
+                                            - [critère 2] <br>
+                                            - [critère 3] <br>
+
+                                            Objectif de la comparaison : [but] <br>
+                                            Niveau de détail souhaité : [spécification] <br>
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+                                <br/>
+                                <div>
+                                    <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                        Partie 2 : Analyse Situationnelle (45min)
+                                    </h4>
+                                    <div class="part-content">
+                                        <ul class="list-disc pl-6 space-y-2">
+                                            <li>Matrice de Décision</li>
+                                            <li><ul>Scénarios Pratiques</li>
+                                                <li>- Breaking News</li>
+                                                <li>- Article de Fond</li>
+                                                <li>- Analyse de Données</li>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
+
+                                <!-- Séance 5 -->
+                                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4 p-4 hover-effect rounded">
+                                        <i class="fas fa-shield-alt text-blue-600 mr-2"></i>
+                                        Séance 5 : <br>
+                                        Éthique et Bonnes Pratiques
+                                    </h3>
+                                    <div class="module-content space-y-4">
+                                        <div>
+                                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                                Partie 1 : Synthèse des Compétences Acquises (30min)
+                                            </h4>
+                                            <div class="part-content">
+                                                <ul class="list-disc pl-6 space-y-2">
+                                                    <li>A. Maîtrise des Types de Prompts</li>
+                                                    <li>B. Applications Pratiques</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                                Partie 2 : Considérations Éthiques (45min)
+                                            </h4>
+                                            <div class="part-content">
+                                                <ul class="list-disc pl-6 space-y-2">
+                                                    <li>A. Transparence et Responsabilité</li>
+                                                    <li>B. Biais et Équité</li>
+                                                    <li>C. Protection des Données</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="part-header font-bold mb-2 p-2 hover-effect rounded">
+                                                Partie 3 : Bonnes Pratiques pour les Médias (45min)
+                                            </h4>
+                                            <div class="part-content">
+                                                <ul class="list-disc pl-6 space-y-2">
+                                                    <li>Workflow Optimal</li>
+                                                    <li>Standards de Qualité</li>
+                                                    <li>Guidelines Professionnelles</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
+            </div>             
             </div>
         </section>
 
         <section id="cours1" class="tab-content mb-16">
-            <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">Cours 1 : Analyse de Données et Médias Sociaux (7 séances)</h2>
+            <div id="tab-cours1" class="tab-content">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">Cours 1 : Analyse de Données et Médias Sociaux</h2>
         
             <div class="grid md:grid-cols-2 gap-8">
         
@@ -242,7 +962,7 @@
                 </div>
         
                 <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-poll mr-2 text-blue-600"></i> Séance 3 : Études et Google Forms</h3>
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-book mr-2 text-blue-600"></i> Séance 3 : Études et Google Forms</h3>
                     <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Méthodologie d'enquête</li><li>Conception formulaires</li><li>Biais et représentativité</li></ul></div>
                     <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Création formulaires</li><li>Analyse automatisée</li><li>Visualisation données</li></ul></div>
                 </div>
@@ -270,12 +990,534 @@
                     <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li>Identification biais</li><li>Neutralité journalistique</li><li>Vérification</li></ul></div>
                     <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li>Détection biais</li><li>Réécriture assistée</li><li>Exercices pratiques</li></ul></div>
                 </div>
-        
+                
+                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                    <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center"><i class="fas fa-poll mr-2 text-blue-600"></i> Séance 8 : Visualisation avec AI</h3>          
+                    <div><h4 class="font-bold mb-2">Théorie (45min)</h4><ul class="list-disc pl-6 space-y-2"><li> </li><li> </li><li></li></ul></div>
+                    <div><h4 class="font-bold mb-2">Pratique (1h15)</h4><ul class="list-disc pl-6 space-y-2"><li> </li><li> </li><li> </li></ul></div>
+                </div>
             </div>
+            </div>
+        </section>
+
+        <section id="cours2" class="tab-content mb-16">
+            <div id="tab-cours2" class="tab-content">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 fade-in">Cours 2 : Production de Contenu Intelligent pour les Médias</h2>
+                        
+                <!-- Cours 2 : Production de Contenu Intelligent -->
+                <div class="container mx-auto px-4 py-8">
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Séance 1 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-sitemap text-blue-600 mr-2"></i>
+                                Séance 1 : Stratégie de Contenu Cross-Platform
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Spécificités des plateformes</li>
+                                        <li>Adaptation du contenu</li>
+                                        <li>Analyse démographique</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Création de matrices de contenu</li>
+                                        <li>Utilisation d'IA pour l'adaptation</li>
+                                        <li>Exercices de ciblage</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 2 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-balance-scale text-blue-600 mr-2"></i>
+                                Séance 2 : Rédaction Objective et Non-Biaisée
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Principes du journalisme objectif</li>
+                                        <li>Identification des biais</li>
+                                        <li>Techniques de neutralité</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Utilisation d'IA pour la détection de biais</li>
+                                        <li>Réécriture assistée</li>
+                                        <li>Exercices de neutralisation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 3 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-search text-blue-600 mr-2"></i>
+                                Séance 3 : Recherche Avancée et Vérification
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Techniques de recherche avancée</li>
+                                        <li>Validation des sources</li>
+                                        <li>Outils spécialisés</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Utilisation d'outils de recherche spécialisés</li>
+                                        <li>Création de workflows de vérification</li>
+                                        <li>Exercices pratiques</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 4 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-layer-group text-blue-600 mr-2"></i>
+                                Séance 4 : Création de Contenu Multiplateforme
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Adaptation selon les plateformes</li>
+                                        <li>Optimisation par âge</li>
+                                        <li>Stratégies d'engagement</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Création de contenu adaptatif</li>
+                                        <li>Tests A/B avec IA</li>
+                                        <li>Analyse des performances</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 5 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-cogs text-blue-600 mr-2"></i>
+                                Séance 5 : Automatisation du Workflow
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Outils d'automatisation</li>
+                                        <li>Workflow intelligent</li>
+                                        <li>Contrôle qualité</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Configuration d'automatisations</li>
+                                        <li>Création de templates</li>
+                                        <li>Tests de production</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 6 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                                Séance 6 : Analytics et Optimisation
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Théorie (45min)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>KPIs par plateforme</li>
+                                        <li>Analyse d'audience</li>
+                                        <li>Optimisation continue</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Pratique (1h15)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Configuration des analytics</li>
+                                        <li>Création de dashboards</li>
+                                        <li>Optimisation basée sur les données</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Séance 7 -->
+                        <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                            <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                <i class="fas fa-flag-checkered text-blue-600 mr-2"></i>
+                                Séance 7 : Projet Final
+                            </h3>
+                            <div class="module-content space-y-4">
+                                <div>
+                                    <h4 class="font-bold mb-2">Programme (2h)</h4>
+                                    <ul class="list-disc pl-6 space-y-2">
+                                        <li>Présentation des projets</li>
+                                        <li>Évaluation globale</li>
+                                        <li>Feedback et perspectives</li>
+                                        <li>Discussion sur les applications futures</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                                                <!-- Séance 7 -->
+                                                <div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+                                                    <h3 class="module-header text-xl font-bold text-blue-800 mb-4">
+                                                        <i class="fas fa-flag-checkered text-blue-600 mr-2"></i>
+                                                        Séance 8 : Projet Final (suite)
+                                                    </h3>
+                                                    <div class="module-content space-y-4">
+                                                        <div>
+                                                            <h4 class="font-bold mb-2">Programme (2h)</h4>
+                                                            <ul class="list-disc pl-6 space-y-2">
+                                                                <li>Présentation des projets</li>
+                                                                <li>Évaluation globale</li>
+                                                                <li>Feedback et perspectives</li>
+                                                                <li>Discussion sur les applications futures</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div id="tab-special" class="tab-content">
+
+<div class="module-card bg-white p-6 rounded-lg shadow fade-in">
+    <!-- En-tête avec image de profil -->
+    <div class="flex items-center justify-between mb-6 bg-gradient-to-r from-blue-900 to-blue-700 p-6 rounded-lg text-white">
+        <div class="flex items-center space-x-4">
+            <div class="w-20 h-20 rounded-full bg-white p-1 shadow-lg">
+                <img src="C:\Users\mohammed.kadri\Downloads\YS.jpg" alt="Youssef Saoud" class="w-full h-full rounded-full object-cover"/>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold">Masterclass Internationale</h3>
+                <p class="text-blue-100">avec Youssef Saoud</p>
+                <p class="text-sm text-blue-200">Journaliste Tech basé aux États-Unis</p>
+            </div>
+        </div>
+        <div class="text-right">
+            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm">Session Spéciale</span>
+            <p class="text-sm mt-2">Durée: 2h</p>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="module-content space-y-6">
+        <!-- Présentation -->
+        <div class="border-l-4 border-blue-500 pl-4">
+            <h4 class="font-bold text-lg text-blue-800 mb-2">
+                <i class="fas fa-info-circle mr-2"></i>Présentation (45min)
+            </h4>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h5 class="font-semibold mb-2 text-gray-700">État des lieux USA</h5>
+                    <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                        <li>Innovations technologiques actuelles</li>
+                        <li>Transformation des rédactions</li>
+                        <li>Nouveaux modèles économiques</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h5 class="font-semibold mb-2 text-gray-700">Tendances émergentes</h5>
+                    <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                        <li>IA dans le journalisme</li>
+                        <li>Automatisation du contenu</li>
+                        <li>Personnalisation de l'information</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Démonstration -->
+        <div class="border-l-4 border-green-500 pl-4">
+            <h4 class="font-bold text-lg text-blue-800 mb-2">
+                <i class="fas fa-laptop-code mr-2"></i>Démonstration (30min)
+            </h4>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h5 class="font-semibold mb-2 text-gray-700">Outils innovants</h5>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                            <li>Plateformes d'analyse avancée</li>
+                            <li>Outils de génération de contenu</li>
+                            <li>Solutions de fact-checking</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold mb-2 text-gray-700">Workflows avancés</h5>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                            <li>Intégration IA dans la production</li>
+                            <li>Automatisation des tâches</li>
+                            <li>Optimisation des processus</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q&A Interactive -->
+        <div class="border-l-4 border-purple-500 pl-4">
+            <h4 class="font-bold text-lg text-blue-800 mb-2">
+                <i class="fas fa-comments mr-2"></i>Q&A Interactive (45min)
+            </h4>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-semibold mb-2 text-gray-700">Format interactif</h5>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                            <li>Questions des étudiants</li>
+                            <li>Discussions guidées</li>
+                            <li>Échange d'expériences</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg mt-4">
+                        <h5 class="font-semibold mb-2 text-blue-800">
+                            <i class="fas fa-lightbulb mr-2"></i>Points clés à aborder
+                        </h5>
+                        <ul class="list-disc pl-4 space-y-2 text-gray-600">
+                            <li>Défis et opportunités du marché américain</li>
+                            <li>Adaptation aux nouvelles technologies</li>
+                            <li>Compétences futures requises</li>
+                            <li>Conseils pour le développement professionnel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ressources -->
+        <div class="mt-6 bg-gradient-to-r from-gray-50 to-white p-4 rounded-lg border border-gray-200">
+            <h4 class="font-bold text-lg text-blue-800 mb-4">
+                <i class="fas fa-book mr-2"></i>Ressources Complémentaires
+            </h4>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                    Guide des outils IA
+                </div>
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <i class="fas fa-link text-blue-500 mr-2"></i>
+                    Liens utiles
+                </div>
+                <div class="p-3 bg-white rounded shadow-sm">
+                    <i class="fas fa-video text-green-500 mr-2"></i>
+                    Démos enregistrées
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-6 text-center">
+            <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                <i class="fas fa-calendar-check mr-2"></i>
+                Réserver votre place
+            </button>
+            <p class="text-sm text-gray-600 mt-2">Places limitées à 50 participants</p>
+        </div>
+    </div>
+</div>
+            </div>
+
+        </section>
+
+        <section>
+            <div id="tab-projects" class="tab-content">
+
+            <!-- Structure pour un projet -->
+<div class="project-container max-w-5xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+    <!-- En-tête du projet avec gradient -->
+    <div class="bg-gradient-to-r from-blue-900 to-blue-700 p-8 text-white">
+        <div class="flex items-center justify-between">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">La Question du Sahara sur les Réseaux Sociaux</h2>
+                <p class="text-blue-100">Analyse et Impact Digital</p>
+            </div>
+            <div class="bg-white/20 p-4 rounded-lg">
+                <span class="text-sm">Projet</span>
+                <div class="text-2xl font-bold">#1</div>
+            </div>
+        </div>
+        <!-- Tags du projet -->
+        <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Analyse</span>
+            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Diplomatie</span>
+            <span class="px-3 py-1 bg-white/20 rounded-full text-sm">Médias Sociaux</span>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="p-8">
+        <!-- Description -->
+        <div class="mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                Description
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+                Analyse approfondie du traitement médiatique et de la perception de la question du Sahara sur les réseaux sociaux, 
+                avec focus sur l'impact des nouvelles technologies dans la diplomatie numérique.
+            </p>
+        </div>
+
+        <!-- Grille de liens avec les modules -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <!-- Module Préliminaire -->
+            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-brain text-blue-600 text-xl mr-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800">Module Préliminaire</h4>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Zero-shot Prompting pour l'analyse initiale</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Few-shot Prompting pour la classification</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Chain-of-thought pour l'analyse approfondie</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Cours 1 -->
+            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-chart-line text-purple-600 text-xl mr-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800">Cours 1: Analyse</h4>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Analyse de sentiment des publications</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Étude des tendances</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Visualisation des données</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Cours 2 -->
+            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-pen-fancy text-indigo-600 text-xl mr-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800">Cours 2: Production</h4>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Création de contenu objectif</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Adaptation multiplateforme</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span class="text-gray-600">Stratégies de communication</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Outils et Techniques -->
+        <div class="mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-tools text-blue-600 mr-2"></i>
+                Outils et Techniques
+            </h3>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-chart-pie text-blue-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Analyse de sentiment</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-search text-purple-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Veille médiatique</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-chart-bar text-green-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Visualisation</p>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-language text-red-500 text-2xl mb-2"></i>
+                    <p class="text-sm text-gray-700">Analyse multilingue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livrables -->
+        <div class="bg-gray-50 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-file-alt text-blue-600 mr-2"></i>
+                Livrables Suggérés
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-tachometer-alt text-blue-500 mr-2"></i>
+                        <h4 class="font-semibold">Dashboard Interactif</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Visualisation en temps réel des analyses</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                        <h4 class="font-semibold">Rapport Détaillé</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Analyse complète et recommandations</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-bullseye text-green-500 mr-2"></i>
+                        <h4 class="font-semibold">Plan Stratégique</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">Recommandations et actions futures</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
         </section>
     </main>
 
-    <script>
+    <!-- <script>
         // Animation au défilement
         function checkFade() {
             const fadeElements = document.querySelectorAll('.fade-in');
@@ -322,6 +1564,113 @@
 
         // Initial check
         checkFade();
-    </script>
+
+        
+
+         // Fonction pour gérer l'accordéon des modules (séances)
+    document.querySelectorAll('.module-header').forEach(header => {
+        header.addEventListener('click', () => {
+            // Toggle la classe active sur le header
+            header.classList.toggle('active');
+            
+            // Toggle la classe active sur le contenu
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+
+            // Si le contenu est actif, assurez-vous qu'il est visible
+            if (content.classList.contains('active')) {
+                content.style.display = 'block';
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                }, 10);
+            } else {
+                content.style.opacity = '0';
+                content.addEventListener('transitionend', function handler() {
+                    if (!content.classList.contains('active')) {
+                        content.style.display = 'none';
+                    }
+                    content.removeEventListener('transitionend', handler);
+                });
+            }
+        });
+    });
+
+    // Fonction pour gérer l'accordéon des parties
+    document.querySelectorAll('.part-header').forEach(header => {
+        header.addEventListener('click', (e) => {
+            e.stopPropagation(); // Empêche la propagation au module parent
+            
+            // Toggle la classe active sur le header
+            header.classList.toggle('active');
+            
+            // Toggle la classe active sur le contenu
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+
+            // Si le contenu est actif, assurez-vous qu'il est visible
+            if (content.classList.contains('active')) {
+                content.style.display = 'block';
+                setTimeout(() => {
+                    content.style.opacity = '1';
+                }, 10);
+            } else {
+                content.style.opacity = '0';
+                content.addEventListener('transitionend', function handler() {
+                    if (!content.classList.contains('active')) {
+                        content.style.display = 'none';
+                    }
+                    content.removeEventListener('transitionend', handler);
+                });
+            }
+        });
+    });
+
+    // Fonction pour initialiser l'état des contenus
+    function initializeAccordions() {
+        document.querySelectorAll('.module-content, .part-content').forEach(content => {
+            if (!content.classList.contains('active')) {
+                content.style.display = 'none';
+                content.style.opacity = '0';
+            }
+        });
+    }
+
+    // Initialiser les accordéons au chargement de la page
+    document.addEventListener('DOMContentLoaded', initializeAccordions);
+
+    // Optionnel : Ajouter des touches de clavier pour l'accessibilité
+    document.querySelectorAll('.module-header, .part-header').forEach(header => {
+        header.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                header.click();
+            }
+        });
+        header.setAttribute('tabindex', '0');
+        header.setAttribute('role', 'button');
+        header.setAttribute('aria-expanded', 'false');
+    });
+
+
+
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Optional: Add animation effect
+            const icon = button.querySelector('.fas');
+            icon.classList.add('animate-bounce');
+            setTimeout(() => {
+                icon.classList.remove('animate-bounce');
+            }, 1000);
+        });
+    });
+    </script> -->
 </body>
 </html>
